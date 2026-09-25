@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brandon Rambauth | Especialista en Observabilidad & SRE</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0b0f17',
+                            card: '#151c2c',
+                            border: '#232f48',
+                            accent: '#06b6d4',
+                            emerald: '#10b981',
+                            purple: '#8b5cf6'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Custom scrollbar and ambient grid effects */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0f17;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #232f48;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06b6d4;
+        }
+        .bg-grid-pattern {
+            background-size: 30px 30px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+        .glow-effect {
+            box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.25);
+        }
+        .glow-effect-green {
+            box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.25);
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-slate-200 font-sans antialiased min-h-screen bg-grid-pattern selection:bg-brand-accent selection:text-brand-dark">
+
+    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/80 backdrop-blur-md border-b border-brand-border/60 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Brand Logo / Terminal style -->
+                <a href="#hero" class="flex items-center space-x-2 group">
+                    <span class="text-brand-accent font-mono font-bold text-lg group-hover:text-cyan-300 transition-colors">&gt; BR_</span>
+                    <span class="font-bold text-slate-100 tracking-tight text-sm sm:text-base">Brandon Rambauth</span>
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span>SRE ONLINE
+                    </span>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-8 font-mono text-sm">
+                    <a href="#about" class="text-slate-300 hover:text-brand-accent transition-colors flex items-center gap-1.5">
+                        <span class="text-brand-accent text-xs">01.</span> Sobre Mí
+                    </a>
+                    <a href="#metrics" class="text-slate-300 hover:text-brand-accent transition-colors flex items-center gap-1.5">
+                        <span class="text-brand-accent text-xs">02.</span> Impacto
+                    </a>
+                    <a href="#experience" class="text-slate-300 hover:text-brand-accent transition-colors flex items-center gap-1.5">
+                        <span class="text-brand-accent text-xs">03.</span> Experiencia
+                    </a>
+                    <a href="#skills" class="text-slate-300 hover:text-brand-accent transition-colors flex items-center gap-1.5">
+                        <span class="text-brand-accent text-xs">04.</span> Skills
+                    </a>
+                    <a href="#education" class="text-slate-300 hover:text-brand-accent transition-colors flex items-center gap-1.5">
+                        <span class="text-brand-accent text-xs">05.</span> Educación
+                    </a>
+                </nav>
+
+                <!-- Actions / Contact CTA -->
+                <div class="hidden sm:flex items-center space-x-3">
+                    <a href="#contact" class="bg-brand-accent/10 border border-brand-accent/40 text-brand-accent hover:bg-brand-accent hover:text-brand-dark px-4 py-2 rounded-lg text-sm font-semibold font-mono transition-all duration-200">
+                        &lt;Contacto /&gt;
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" type="button" class="text-slate-400 hover:text-white focus:outline-none p-2 rounded-lg bg-brand-card border border-brand-border" aria-label="Menu">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-card/95 border-b border-brand-border px-4 pt-2 pb-6 space-y-3 font-mono text-sm">
+            <a href="#about" class="block py-2 text-slate-300 hover:text-brand-accent border-b border-slate-800">01. Sobre Mí</a>
+            <a href="#metrics" class="block py-2 text-slate-300 hover:text-brand-accent border-b border-slate-800">02. Impacto</a>
+            <a href="#experience" class="block py-2 text-slate-300 hover:text-brand-accent border-b border-slate-800">03. Experiencia</a>
+            <a href="#skills" class="block py-2 text-slate-300 hover:text-brand-accent border-b border-slate-800">04. Skills</a>
+            <a href="#education" class="block py-2 text-slate-300 hover:text-brand-accent border-b border-slate-800">05. Educación</a>
+            <a href="#contact" class="block text-center mt-4 bg-brand-accent text-brand-dark font-bold py-2.5 rounded-lg">Contacto Directo</a>
+        </div>
+    </header>
+
+    <main class="pt-20">
+        <section id="hero" class="relative py-16 lg:py-24 overflow-hidden border-b border-brand-border/40">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Hero Content -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono">
+                            <i class="fa-solid fa-chart-line text-xs"></i> Observabilidad Predictiva & Resiliencia
+                        </div>
+
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
+                            Brandon David <br/>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400">Rambauth Céspedes</span>
+                        </h1>
+
+                        <p class="text-xl font-semibold text-slate-300 font-mono">
+                            Especialista en Observabilidad y SRE | Ingeniero de Sistemas
+                        </p>
+
+                        <p class="text-slate-400 text-base sm:text-lg max-w-2xl leading-relaxed">
+                            Transformo entornos reactivos en modelos predictivos orientados al negocio. Con más de 4 años liderando la resiliencia operativa y optimizando ecosistemas de telemetría como <strong class="text-slate-200">Dynatrace, Datadog y SolarWinds</strong>.
+                        </p>
+
+                        <!-- Quick Badges & Info -->
+                        <div class="flex flex-wrap gap-4 text-xs font-mono text-slate-400 pt-2">
+                            <span class="flex items-center gap-1.5 bg-brand-card/80 px-3 py-1.5 rounded-md border border-brand-border">
+                                <i class="fa-solid fa-location-dot text-brand-accent"></i> Bogotá, Colombia
+                            </span>
+                            <span class="flex items-center gap-1.5 bg-brand-card/80 px-3 py-1.5 rounded-md border border-brand-border">
+                                <i class="fa-solid fa-briefcase text-emerald-400"></i> +4 Años de Experiencia
+                            </span>
+                            <span class="flex items-center gap-1.5 bg-brand-card/80 px-3 py-1.5 rounded-md border border-brand-border">
+                                <i class="fa-solid fa-language text-purple-400"></i> Inglés B2
+                            </span>
+                        </div>
+
+                        <!-- Hero CTA buttons -->
+                        <div class="pt-4 flex flex-wrap gap-4 items-center">
+                            <a href="https://www.linkedin.com/in/brandon-rambauth/" target="_blank" rel="noopener noreferrer" class="bg-gradient-to-r from-cyan-500 to-teal-500 hover:from-cyan-400 hover:to-teal-400 text-brand-dark font-bold px-6 py-3 rounded-lg flex items-center gap-2 shadow-lg hover:shadow-cyan-500/25 transition-all">
+                                <i class="fa-brands fa-linkedin text-lg"></i> Perfil LinkedIn
+                            </a>
+                            <a href="mailto:bc.cespedes2002@gmail.com" class="bg-brand-card hover:bg-brand-border text-slate-200 font-semibold px-6 py-3 rounded-lg border border-brand-border flex items-center gap-2 transition-all">
+                                <i class="fa-regular fa-envelope text-brand-accent"></i> Enviar Correo
+                            </a>
+                            <a href="#contact" class="text-slate-400 hover:text-white font-mono text-sm underline underline-offset-4 flex items-center gap-1">
+                                Ver teléfono <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Hero Avatar / Live Telemetry Card Simulation -->
+                    <div class="lg:col-span-5">
+                        <div class="relative mx-auto max-w-md bg-brand-card rounded-2xl border border-brand-border p-6 shadow-2xl glow-effect">
+                            
+                            <!-- Profile Header -->
+                            <div class="flex items-center gap-4 border-b border-brand-border/80 pb-5">
+                                <div class="relative">
+                                    <div class="w-20 h-20 rounded-full overflow-hidden border-2 border-brand-accent/60 bg-slate-800 flex items-center justify-center text-slate-400">
+                                        <!-- Placeholder photo with fallback icon -->
+                                        <i class="fa-solid fa-user-shield text-3xl text-brand-accent"></i>
+                                    </div>
+                                    <span class="absolute bottom-0 right-0 w-5 h-5 bg-emerald-500 border-2 border-brand-card rounded-full" title="Estado: Disponible / Operacional"></span>
+                                </div>
+                                <div>
+                                    <h2 class="text-white font-bold text-lg">Brandon Rambauth</h2>
+                                    <p class="text-xs text-brand-accent font-mono">SRE & Observability Architect</p>
+                                    <p class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-building text-slate-500 mr-1"></i> BNP Paribas Cardif / Periferia IT</p>
+                                </div>
+                            </div>
+
+                            <!-- Live Telemetry Simulation Console -->
+                            <div class="mt-5 space-y-3 font-mono text-xs">
+                                <div class="flex items-center justify-between text-slate-400 pb-1 border-b border-slate-800/80">
+                                    <span>SYSTEM_TELEMETRY</span>
+                                    <span class="text-emerald-400 flex items-center gap-1">
+                                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> REAL-TIME
+                                    </span>
+                                </div>
+
+                                <div class="space-y-2 text-slate-300 bg-brand-dark/90 p-3.5 rounded-lg border border-brand-border/60">
+                                    <div class="flex justify-between">
+                                        <span class="text-slate-500">Dynatrace / Datadog:</span>
+                                        <span class="text-cyan-400">NORMAL (99.98% SLA)</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-slate-500">Proactive Incident Detection:</span>
+                                        <span class="text-emerald-400 font-bold">95.0%</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-slate-500">MTTR Optimization:</span>
+                                        <span class="text-purple-400">-40% Average</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-slate-500">Cloud Multi-tenant:</span>
+                                        <span class="text-slate-300">AWS / Azure / IBM Cloud</span>
+                                    </div>
+                                </div>
+
+                                <!-- Interactive Tag bar -->
+                                <div class="pt-2 flex flex-wrap gap-1.5">
+                                    <span class="px-2 py-1 rounded bg-slate-800 text-slate-300 text-[10px]">#Dynatrace</span>
+                                    <span class="px-2 py-1 rounded bg-slate-800 text-slate-300 text-[10px]">#Datadog</span>
+                                    <span class="px-2 py-1 rounded bg-slate-800 text-slate-300 text-[10px]">#SolarWinds</span>
+                                    <span class="px-2 py-1 rounded bg-slate-800 text-slate-300 text-[10px]">#Python</span>
+                                    <span class="px-2 py-1 rounded bg-slate-800 text-slate-300 text-[10px]">#SRE</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="metrics" class="py-16 bg-brand-dark/50 border-b border-brand-border/40">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-xs font-mono uppercase tracking-widest text-brand-accent mb-2">// Hitos Operativos & Métricas</h2>
+                    <p class="text-3xl font-extrabold text-white">Resultados Cuantificables que Generan Valor</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <!-- Metric Card 1 -->
+                    <div class="bg-brand-card p-6 rounded-xl border border-brand-border hover:border-brand-accent/50 transition-all duration-300 group">
+                        <div class="w-12 h-12 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <div class="text-3xl font-extrabold text-white font-mono mb-1 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-300">
+                            95%
+                        </div>
+                        <h3 class="text-sm font-bold text-slate-200 mb-2">Detección Proactiva</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            De incidentes detectados antes de afectar la experiencia del usuario final en Puntos Colombia.
+                        </p>
+                    </div>
+
+                    <!-- Metric Card 2 -->
+                    <div class="bg-brand-card p-6 rounded-xl border border-brand-border hover:border-emerald-500/50 transition-all duration-300 group">
+                        <div class="w-12 h-12 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-arrow-trend-down"></i>
+                        </div>
+                        <div class="text-3xl font-extrabold text-white font-mono mb-1 text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">
+                            -33%
+                        </div>
+                        <h3 class="text-sm font-bold text-slate-200 mb-2">Optimización de Costos</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Reducción del costo operativo sobre licencias e infraestructura Dynatrace mediante tuning avanzado.
+                        </p>
+                    </div>
+
+                    <!-- Metric Card 3 -->
+                    <div class="bg-brand-card p-6 rounded-xl border border-brand-border hover:border-purple-500/50 transition-all duration-300 group">
+                        <div class="w-12 h-12 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <div class="text-3xl font-extrabold text-white font-mono mb-1 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-300">
+                            3 Meses
+                        </div>
+                        <h3 class="text-sm font-bold text-slate-200 mb-2">Migración Rápida</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Ejecución exitosa de migración masiva completa desde Splunk hacia Dynatrace sin interrumpir servicios.
+                        </p>
+                    </div>
+
+                    <!-- Metric Card 4 -->
+                    <div class="bg-brand-card p-6 rounded-xl border border-brand-border hover:border-amber-500/50 transition-all duration-300 group">
+                        <div class="w-12 h-12 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-certificate"></i>
+                        </div>
+                        <div class="text-3xl font-extrabold text-white font-mono mb-1 text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-200">
+                            +20
+                        </div>
+                        <h3 class="text-sm font-bold text-slate-200 mb-2">Certificaciones</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Validaciones técnicas en Dynatrace, Datadog, SolarWinds, MongoDB y Analítica de Datos.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-16 border-b border-brand-border/40">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-brand-card/70 border border-brand-border rounded-2xl p-6 sm:p-10 relative overflow-hidden">
+                    <div class="absolute -top-12 -right-12 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="p-2 rounded-lg bg-brand-accent/10 text-brand-accent font-mono text-sm font-bold">01</span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Perfil Profesional & Enfoque Strategico</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                        <div class="lg:col-span-2 space-y-4 text-slate-300 text-base leading-relaxed">
+                            <p>
+                                Soy <strong class="text-white">Ingeniero de Sistemas</strong> enfocado en Site Reliability Engineering (SRE) y la gestión integral de plataformas de observabilidad. Mi carrera se caracteriza por llevar a las organizaciones desde esquemas tradicionales de monitoreo pasivo hasta **modelos de observabilidad predictiva y proactiva**.
+                            </p>
+                            <p>
+                                Me especializo en traducir telemetría masiva (métricas, logs, trazas y eventos) en <strong class="text-cyan-400">insights accionables e indicadores de negocio (KPIs / SLAs)</strong>. A través de automatizaciones, scripting e ingeniería de confiabilidad, he logrado reducciones significativas en el Tiempo Medio de Reparación (MTTR) y mejoras tangibles en la disponibilidad de arquitecturas multi-cloud.
+                            </p>
+                        </div>
+
+                        <!-- Core Principles List -->
+                        <div class="bg-brand-dark/80 p-5 rounded-xl border border-brand-border/80 space-y-3 font-mono text-xs">
+                            <div class="text-brand-accent font-bold pb-2 border-b border-slate-800 uppercase tracking-wider">
+                                &lt; Pilares_De_Trabajo &gt;
+                            </div>
+                            <div class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                                <span class="text-slate-300">Observabilidad orientada a resultados de negocio y optimización de costos.</span>
+                            </div>
+                            <div class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                                <span class="text-slate-300">Evangelización de cultura SRE, continuidad y automatización de procesos.</span>
+                            </div>
+                            <div class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                                <span class="text-slate-300">Gestión de incidentes críticos y reducción sistemática de deuda técnica.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="py-16 bg-brand-dark/40 border-b border-brand-border/40">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-xs font-mono uppercase tracking-widest text-brand-accent mb-2">// Trayectoria Profesional</h2>
+                    <p class="text-3xl font-extrabold text-white">Experiencia Laboral Reciente</p>
+                </div>
+
+                <div class="relative border-l-2 border-brand-border md:ml-32 ml-4 space-y-12">
+
+                    <!-- Role 1 -->
+                    <div class="relative pl-8 group">
+                        <!-- Timeline Node Dot -->
+                        <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-brand-dark border-2 border-brand-accent text-brand-accent flex items-center justify-center text-xs group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-server"></i>
+                        </div>
+
+                        <!-- Date Badge (Desktop Left Absolute) -->
+                        <div class="md:absolute md:-left-40 md:top-1.5 font-mono text-xs text-brand-accent font-semibold mb-2 md:mb-0">
+                            Abr 2026 - Presente
+                        </div>
+
+                        <!-- Card Content -->
+                        <div class="bg-brand-card p-6 rounded-xl border border-brand-border hover:border-brand-accent/50 transition-all duration-200">
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">Administrador de Plataformas de Observabilidad</h3>
+                                    <p class="text-sm text-cyan-400 font-semibold">Periferia IT / BNP Paribas Cardif Colombia</p>
+                                </div>
+                                <span class="px-2.5 py-1 rounded text-xs font-mono bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                                    En curso
+                                </span>
+                            </div>
+
+                            <ul class="space-y-2.5 text-slate-300 text-sm list-disc list-inside leading-relaxed">
+                                <li>Administración y optimización del ecosistema global de observabilidad en entornos <strong class="text-white">multi-tenant e internacionales</strong> sobre Dynatrace (Managed/SaaS), Datadog y ELK Stack.</li>
+                                <li>Liderazgo en la integración de capas de observabilidad con la nube financiera <strong class="text-white">IBM Financial Services Cloud</strong> y herramientas de terceros.</li>
+                                <li>Diseño e implementación de flujos de <strong class="text-white">automatización y scripting</strong> para la auto-remediación de eventos y reducción de deuda técnica mediante ingeniería inversa.</li>
+                                <li>Transformación de telemetría masiva en KPIs orientados al negocio, alineando el rendimiento de infraestructura con el valor transaccional.</li>
+                            </ul>
+
+                            <div class="mt-4 pt-4 border-t border-slate-800 flex flex-wrap gap-2 text-xs font-mono">
+                                <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">Dynatrace SaaS/Managed</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">Datadog</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">ELK Stack</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">IBM Cloud</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Role 2 -->
+                    <div class="relative pl-8 group">
+                        <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-brand-dark border-2 border-emerald-500 text-emerald-400 flex items-center justify-center text-xs group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-chart-pie"></i>
+                        </div>
+
+                        <div class="md:absolute md:-left-40 md:top-1.5 font-mono text-xs text-slate-400 font-semibold mb-2 md:mb-0">
+                            Abr 2025 - Mar 2026
+                        </div>
+
+                        <div class="bg-brand-card p-6 rounded-xl border border-brand-border hover:border-emerald-500/50 transition-all duration-200">
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">Analista de Observabilidad</h3>
+                                    <p class="text-sm text-emerald-400 font-semibold">Puntos Colombia</p>
+                                </div>
+                            </div>
+
+                            <ul class="space-y-2.5 text-slate-300 text-sm list-disc list-inside leading-relaxed">
+                                <li>Liderazgo en el cambio hacia observabilidad predictiva mediante tuning avanzado de Dynatrace, detectando el <strong class="text-emerald-400">95% de incidentes de forma proactiva</strong>.</li>
+                                <li>Reducción del <strong class="text-emerald-400">33% en costos operativos</strong> de licenciamiento e infraestructura Dynatrace a través de optimizaciones técnicas y automatización.</li>
+                                <li>Ejecución completa de la <strong class="text-white">migración total de Splunk a Dynatrace en solo 3 meses</strong> sin afectar la continuidad operativa.</li>
+                                <li>Estandarización de buenas prácticas operativas mediante capacitaciones transversales a nivel organizacional.</li>
+                            </ul>
+
+                            <div class="mt-4 pt-4 border-t border-slate-800 flex flex-wrap gap-2 text-xs font-mono">
+                                <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">Dynatrace</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">Splunk Migration</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">Predictive Tuning</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Role 3 -->
+                    <div class="relative pl-8 group">
+                        <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-brand-dark border-2 border-purple-500 text-purple-400 flex items-center justify-center text-xs group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-users-gear"></i>
+                        </div>
+
+                        <div class="md:absolute md:-left-40 md:top-1.5 font-mono text-xs text-slate-400 font-semibold mb-2 md:mb-0">
+                            Oct 2024 - Abr 2025
+                        </div>
+
+                        <div class="bg-brand-card p-6 rounded-xl border border-brand-border hover:border-purple-500/50 transition-all duration-200">
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">Monitoring Leader</h3>
+                                    <p class="text-sm text-purple-400 font-semibold">Servinform</p>
+                                </div>
+                            </div>
+
+                            <ul class="space-y-2.5 text-slate-300 text-sm list-disc list-inside leading-relaxed">
+                                <li>Dirección de equipos técnicos para la entrega de indicadores críticos y analítica de datos en alineación con metas estratégicas del negocio.</li>
+                                <li>Coordinación y escalamiento de incidentes críticos con automatizaciones en scripting y bases de datos sobre plataformas como <strong class="text-white">SolarWinds y EasyVista</strong>.</li>
+                                <li>Consultoría a equipos de desarrollo para facilitar la adopción de prácticas de <strong class="text-purple-300">Site Reliability Engineering (SRE)</strong>.</li>
+                            </ul>
+
+                            <div class="mt-4 pt-4 border-t border-slate-800 flex flex-wrap gap-2 text-xs font-mono">
+                                <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">SolarWinds</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">EasyVista</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">Team Leadership</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">SRE Enablement</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Role 4 -->
+                    <div class="relative pl-8 group">
+                        <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-brand-dark border-2 border-amber-500 text-amber-400 flex items-center justify-center text-xs group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-cloud text-amber-400"></i>
+                        </div>
+
+                        <div class="md:absolute md:-left-40 md:top-1.5 font-mono text-xs text-slate-400 font-semibold mb-2 md:mb-0">
+                            Jun 2022 - Ago 2024
+                        </div>
+
+                        <div class="bg-brand-card p-6 rounded-xl border border-brand-border hover:border-amber-500/50 transition-all duration-200">
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">Project Engineer II</h3>
+                                    <p class="text-sm text-amber-400 font-semibold">E-dea Networks</p>
+                                </div>
+                            </div>
+
+                            <ul class="space-y-2.5 text-slate-300 text-sm list-disc list-inside leading-relaxed">
+                                <li>Liderazgo en proyectos de arquitectura e infraestructura crítica de observabilidad para clientes enterprise de alto volumen transaccional.</li>
+                                <li>Tuning avanzado en bases de datos SQL y redes para maximizar el rendimiento global de la suite SolarWinds.</li>
+                                <li>Orquestación de la integración de capas de monitoreo en entornos multi-cloud (<strong class="text-white">AWS, Azure y GCP</strong>) con resiliencia y alta disponibilidad.</li>
+                            </ul>
+
+                            <div class="mt-4 pt-4 border-t border-slate-800 flex flex-wrap gap-2 text-xs font-mono">
+                                <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">SolarWinds Enterprise</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">Multi-Cloud (AWS/Azure/GCP)</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">SQL Performance Tuning</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section id="skills" class="py-16 border-b border-brand-border/40">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-xs font-mono uppercase tracking-widest text-brand-accent mb-2">// Stack & Competencias</h2>
+                    <p class="text-3xl font-extrabold text-white">Habilidades Técnicas y Metodológicas</p>
+                </div>
+
+                <!-- Skill Categories Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <!-- Observability Category -->
+                    <div class="bg-brand-card p-6 rounded-xl border border-brand-border hover:border-cyan-500/50 transition-all">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i class="fa-solid fa-eye text-cyan-400 text-xl"></i>
+                            <h3 class="font-bold text-white text-base">Observabilidad</h3>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-xs text-slate-300"><span>Dynatrace (SaaS/Managed)</span><span class="text-cyan-400 font-mono">Expert</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-cyan-400 h-full w-[95%]"></div></div>
+
+                            <div class="flex justify-between text-xs text-slate-300 pt-2"><span>Datadog</span><span class="text-cyan-400 font-mono">Advanced</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-cyan-400 h-full w-[88%]"></div></div>
+
+                            <div class="flex justify-between text-xs text-slate-300 pt-2"><span>SolarWinds Platform</span><span class="text-cyan-400 font-mono">Expert</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-cyan-400 h-full w-[92%]"></div></div>
+
+                            <div class="flex justify-between text-xs text-slate-300 pt-2"><span>Splunk & ELK Stack</span><span class="text-cyan-400 font-mono">Advanced</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-cyan-400 h-full w-[82%]"></div></div>
+                        </div>
+                    </div>
+
+                    <!-- Programming & Data -->
+                    <div class="bg-brand-card p-6 rounded-xl border border-brand-border hover:border-emerald-500/50 transition-all">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i class="fa-solid fa-code text-emerald-400 text-xl"></i>
+                            <h3 class="font-bold text-white text-base">Programación & Datos</h3>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-xs text-slate-300"><span>Python & Scripting</span><span class="text-emerald-400 font-mono">Advanced</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-emerald-400 h-full w-[88%]"></div></div>
+
+                            <div class="flex justify-between text-xs text-slate-300 pt-2"><span>Bash / Shell Scripting</span><span class="text-emerald-400 font-mono">Advanced</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-emerald-400 h-full w-[85%]"></div></div>
+
+                            <div class="flex justify-between text-xs text-slate-300 pt-2"><span>SQL & NoSQL (MongoDB)</span><span class="text-emerald-400 font-mono">Advanced</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-emerald-400 h-full w-[85%]"></div></div>
+
+                            <div class="flex justify-between text-xs text-slate-300 pt-2"><span>Analítica de Datos Avanzada</span><span class="text-emerald-400 font-mono">Advanced</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-emerald-400 h-full w-[90%]"></div></div>
+                        </div>
+                    </div>
+
+                    <!-- Cloud & Infra -->
+                    <div class="bg-brand-card p-6 rounded-xl border border-brand-border hover:border-purple-500/50 transition-all">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i class="fa-solid fa-cloud text-purple-400 text-xl"></i>
+                            <h3 class="font-bold text-white text-base">Cloud & Infraestructura</h3>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-xs text-slate-300"><span>Amazon Web Services (AWS)</span><span class="text-purple-400 font-mono">Proficient</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-purple-400 h-full w-[80%]"></div></div>
+
+                            <div class="flex justify-between text-xs text-slate-300 pt-2"><span>Microsoft Azure</span><span class="text-purple-400 font-mono">Proficient</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-purple-400 h-full w-[80%]"></div></div>
+
+                            <div class="flex justify-between text-xs text-slate-300 pt-2"><span>IBM Financial Cloud</span><span class="text-purple-400 font-mono">Proficient</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-purple-400 h-full w-[78%]"></div></div>
+                        </div>
+                    </div>
+
+                    <!-- Culture & Process -->
+                    <div class="bg-brand-card p-6 rounded-xl border border-brand-border hover:border-amber-500/50 transition-all">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i class="fa-solid fa-diagram-project text-amber-400 text-xl"></i>
+                            <h3 class="font-bold text-white text-base">Cultura & Metodología</h3>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-xs text-slate-300"><span>Site Reliability Eng. (SRE)</span><span class="text-amber-400 font-mono">Expert</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-amber-400 h-full w-[95%]"></div></div>
+
+                            <div class="flex justify-between text-xs text-slate-300 pt-2"><span>Gestión MTTR / SLAs / Incidentes</span><span class="text-amber-400 font-mono">Expert</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-amber-400 h-full w-[92%]"></div></div>
+
+                            <div class="flex justify-between text-xs text-slate-300 pt-2"><span>Scrum & Lean Practices</span><span class="text-amber-400 font-mono">Advanced</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-amber-400 h-full w-[85%]"></div></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="py-16 bg-brand-dark/40 border-b border-brand-border/40">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    
+                    <!-- Education Column -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div class="flex items-center gap-3">
+                            <span class="p-2 rounded-lg bg-brand-accent/10 text-brand-accent font-mono text-sm font-bold">05</span>
+                            <h2 class="text-2xl font-bold text-white">Formación Académica</h2>
+                        </div>
+
+                        <div class="space-y-4">
+                            <!-- Education Item 1 -->
+                            <div class="bg-brand-card p-5 rounded-xl border border-brand-border relative">
+                                <span class="text-xs font-mono text-brand-accent font-semibold">2025 - En curso</span>
+                                <h3 class="text-base font-bold text-white mt-1">Maestría en Ingeniería y Analítica de Datos</h3>
+                                <p class="text-xs text-slate-400">Universidad Jorge Tadeo Lozano</p>
+                            </div>
+
+                            <!-- Education Item 2 -->
+                            <div class="bg-brand-card p-5 rounded-xl border border-brand-border relative">
+                                <span class="text-xs font-mono text-slate-400 font-semibold">2019 - 2023</span>
+                                <h3 class="text-base font-bold text-white mt-1">Ingeniero de Sistemas</h3>
+                                <p class="text-xs text-slate-400">Universidad Jorge Tadeo Lozano</p>
+                            </div>
+
+                            <!-- Education Item 3 -->
+                            <div class="bg-brand-card p-5 rounded-xl border border-brand-border relative">
+                                <span class="text-xs font-mono text-slate-400 font-semibold">2024</span>
+                                <h3 class="text-base font-bold text-white mt-1">Diplomado en Gestión de Proyectos</h3>
+                                <p class="text-xs text-slate-400">Politécnico de Colombia</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certifications Column -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 font-mono text-sm font-bold"><i class="fa-solid fa-award"></i></span>
+                                <h2 class="text-2xl font-bold text-white">Certificaciones Destacadas</h2>
+                            </div>
+                            <span class="text-xs font-mono text-slate-400">+20 en LinkedIn</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            
+                            <!-- Cert Card 1 -->
+                            <div class="bg-brand-card p-4 rounded-xl border border-brand-border flex items-start gap-3 hover:border-cyan-500/40 transition-colors">
+                                <div class="p-2 rounded-lg bg-cyan-500/10 text-cyan-400 font-bold text-lg"><i class="fa-solid fa-cube"></i></div>
+                                <div>
+                                    <h3 class="text-sm font-bold text-white">Dynatrace Essentials</h3>
+                                    <p class="text-xs text-slate-400 mt-0.5">Dynatrace</p>
+                                </div>
+                            </div>
+
+                            <!-- Cert Card 2 -->
+                            <div class="bg-brand-card p-4 rounded-xl border border-brand-border flex items-start gap-3 hover:border-cyan-500/40 transition-colors">
+                                <div class="p-2 rounded-lg bg-amber-500/10 text-amber-400 font-bold text-lg"><i class="fa-solid fa-network-wired"></i></div>
+                                <div>
+                                    <h3 class="text-sm font-bold text-white">Network Performance Monitor</h3>
+                                    <p class="text-xs text-slate-400 mt-0.5">SolarWinds</p>
+                                </div>
+                            </div>
+
+                            <!-- Cert Card 3 -->
+                            <div class="bg-brand-card p-4 rounded-xl border border-brand-border flex items-start gap-3 hover:border-cyan-500/40 transition-colors">
+                                <div class="p-2 rounded-lg bg-purple-500/10 text-purple-400 font-bold text-lg"><i class="fa-solid fa-chart-line"></i></div>
+                                <div>
+                                    <h3 class="text-sm font-bold text-white">DPN Sales Specialist Certification</h3>
+                                    <p class="text-xs text-slate-400 mt-0.5">Datadog</p>
+                                </div>
+                            </div>
+
+                            <!-- Cert Card 4 -->
+                            <div class="bg-brand-card p-4 rounded-xl border border-brand-border flex items-start gap-3 hover:border-cyan-500/40 transition-colors">
+                                <div class="p-2 rounded-lg bg-amber-500/10 text-amber-400 font-bold text-lg"><i class="fa-solid fa-server"></i></div>
+                                <div>
+                                    <h3 class="text-sm font-bold text-white">SolarWinds Self-Hosted Platform</h3>
+                                    <p class="text-xs text-slate-400 mt-0.5">SolarWinds</p>
+                                </div>
+                            </div>
+
+                            <!-- Cert Card 5 -->
+                            <div class="bg-brand-card p-4 rounded-xl border border-brand-border flex items-start gap-3 hover:border-cyan-500/40 transition-colors">
+                                <div class="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 font-bold text-lg"><i class="fa-solid fa-database"></i></div>
+                                <div>
+                                    <h3 class="text-sm font-bold text-white">Data Analytics</h3>
+                                    <p class="text-xs text-slate-400 mt-0.5">MinTIC Colombia</p>
+                                </div>
+                            </div>
+
+                            <!-- Cert Card 6 -->
+                            <div class="bg-brand-card p-4 rounded-xl border border-brand-border flex items-start gap-3 hover:border-cyan-500/40 transition-colors">
+                                <div class="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 font-bold text-lg"><i class="fa-solid fa-leaf"></i></div>
+                                <div>
+                                    <h3 class="text-sm font-bold text-white">MongoDB SI Associate</h3>
+                                    <p class="text-xs text-slate-400 mt-0.5">MongoDB</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section id="contact" class="py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="bg-gradient-to-r from-brand-card via-brand-dark to-brand-card border border-brand-border rounded-2xl p-8 sm:p-12 relative overflow-hidden">
+                    
+                    <div class="max-w-3xl mx-auto text-center space-y-6">
+                        <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-mono border border-cyan-500/20">
+                            &lt;¿HABLAMOS DE TU INFRAESTRUCTURA? /&gt;
+                        </span>
+
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Conectemos y optimicemos la resiliencia de tu plataforma</h2>
+                        
+                        <p class="text-slate-300 text-sm sm:text-base">
+                            Estoy disponible para proyectos de consultoría, ingeniería de observabilidad, optimización SRE o nuevas oportunidades de liderazgo técnico.
+                        </p>
+
+                        <!-- Direct Contact Cards Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 text-left">
+                            
+                            <!-- Phone -->
+                            <div class="bg-brand-dark/90 p-4 rounded-xl border border-brand-border">
+                                <div class="text-brand-accent text-lg mb-1"><i class="fa-solid fa-phone"></i></div>
+                                <span class="text-xs text-slate-400 block font-mono">Teléfono / WhatsApp</span>
+                                <a href="tel:+573194892106" class="text-sm font-bold text-white hover:text-cyan-400 transition-colors">+57 319 489 2106</a>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="bg-brand-dark/90 p-4 rounded-xl border border-brand-border">
+                                <div class="text-emerald-400 text-lg mb-1"><i class="fa-regular fa-envelope"></i></div>
+                                <span class="text-xs text-slate-400 block font-mono">Correo Electrónico</span>
+                                <a href="mailto:bc.cespedes2002@gmail.com" class="text-xs font-bold text-white hover:text-emerald-400 transition-colors break-all">bc.cespedes2002@gmail.com</a>
+                            </div>
+
+                            <!-- LinkedIn -->
+                            <div class="bg-brand-dark/90 p-4 rounded-xl border border-brand-border">
+                                <div class="text-purple-400 text-lg mb-1"><i class="fa-brands fa-linkedin"></i></div>
+                                <span class="text-xs text-slate-400 block font-mono">LinkedIn Profile</span>
+                                <a href="https://www.linkedin.com/in/brandon-rambauth/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-white hover:text-purple-400 transition-colors">in/brandon-rambauth</a>
+                            </div>
+
+                        </div>
+
+                        <!-- Interactive Copy Email Action -->
+                        <div class="pt-6 flex justify-center gap-4">
+                            <button id="copy-email-btn" type="button" class="bg-brand-accent text-brand-dark font-bold px-6 py-3 rounded-lg text-sm flex items-center gap-2 hover:bg-cyan-300 transition-all">
+                                <i class="fa-regular fa-copy"></i> Copiar Correo al Portapapeles
+                            </button>
+                        </div>
+                        <p id="copy-toast" class="hidden text-xs font-mono text-emerald-400 mt-2">¡Correo copiado exitosamente al portapapeles!</p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-brand-dark border-t border-brand-border/60 py-8 text-center text-slate-500 font-mono text-xs">
+        <div class="max-w-7xl mx-auto px-4 space-y-2">
+            <p>© <span id="year"></span> Brandon David Rambauth Céspedes - Especialista en Observabilidad & SRE.</p>
+            <p class="text-slate-600">Bogotá, Colombia | Diseñado con enfoque en telemetría y alta disponibilidad.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dynamic Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on clicking links
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Clipboard Copy Action
+        const copyBtn = document.getElementById('copy-email-btn');
+        const copyToast = document.getElementById('copy-toast');
+
+        copyBtn.addEventListener('click', () => {
+            const email = "bc.cespedes2002@gmail.com";
+            
+            // Fallback clipboard method for iframe environments
+            const textArea = document.createElement("textarea");
+            textArea.value = email;
+            document.body.appendChild(textArea);
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                copyToast.classList.remove('hidden');
+                setTimeout(() => {
+                    copyToast.classList.add('hidden');
+                }, 3000);
+            } catch (err) {
+                console.error('Error al copiar el texto', err);
+            }
+            
+            document.body.removeChild(textArea);
+        });
+    </script>
+</body>
+</html>
