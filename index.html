@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brandon Rambauth | Especialista en Observabilidad & SRE</title>
+    <title>Brandon Rambauth | SRE & Observabilidad</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -12,10 +12,10 @@
                 extend: {
                     colors: {
                         brand: {
-                            bg: '#FDFBF7', // Fondo blanco roto/crema muy sutil
-                            text: '#292524', // Stone 900 - gris oscuro cálido
-                            muted: '#78716C', // Stone 500
-                            accent: '#9A3412', // Naranja óxido / Terracota
+                            bg: '#FDFBF7', // Fondo crema muy sutil
+                            text: '#292524', // Gris oscuro cálido
+                            muted: '#78716C', // Gris medio
+                            accent: '#9A3412', // Terracota / Naranja óxido
                             surface: '#FFFFFF',
                             border: '#E7E5E4'
                         }
@@ -43,30 +43,27 @@
 </head>
 <body class="bg-brand-bg text-brand-text font-sans antialiased min-h-screen selection:bg-brand-accent selection:text-white">
 
-    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-bg/90 backdrop-blur-md border-b border-brand-border transition-all duration-300">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-bg/95 backdrop-blur-sm border-b border-brand-border transition-all duration-300">
         <div class="max-w-6xl mx-auto px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
-                <!-- Brand Logo Minimalista -->
                 <a href="#hero" class="flex items-center space-x-2 group">
                     <span class="font-serif font-semibold text-brand-text tracking-tight text-lg">Brandon Rambauth.</span>
                 </a>
 
-                <!-- Desktop Navigation Links -->
                 <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
                     <a href="#about" class="text-brand-muted hover:text-brand-accent transition-colors">Sobre Mí</a>
+                    <a href="#philosophy" class="text-brand-muted hover:text-brand-accent transition-colors">Filosofía</a>
                     <a href="#experience" class="text-brand-muted hover:text-brand-accent transition-colors">Experiencia</a>
-                    <a href="#skills" class="text-brand-muted hover:text-brand-accent transition-colors">Skills</a>
                     <a href="#education" class="text-brand-muted hover:text-brand-accent transition-colors">Educación</a>
                 </nav>
 
-                <!-- Actions / Contact CTA -->
                 <div class="hidden sm:flex items-center space-x-4">
-                    <a href="#contact" class="text-brand-text border-b border-brand-text hover:text-brand-accent hover:border-brand-accent pb-0.5 text-sm font-medium transition-all">
+                    <a href="mailto:bc.cespedes2002@gmail.com" class="text-brand-text border-b border-brand-text hover:text-brand-accent hover:border-brand-accent pb-0.5 text-sm font-medium transition-all">
                         Contacto
                     </a>
                 </div>
 
-                <!-- Mobile menu button -->
                 <div class="md:hidden flex items-center">
                     <button id="mobile-menu-btn" type="button" class="text-brand-text focus:outline-none p-2">
                         <i class="fa-solid fa-bars text-lg"></i>
@@ -75,13 +72,12 @@
             </div>
         </div>
 
-        <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="hidden md:hidden bg-brand-surface border-b border-brand-border px-6 pt-4 pb-8 space-y-4 shadow-xl">
             <a href="#about" class="block text-brand-text font-medium">Sobre Mí</a>
+            <a href="#philosophy" class="block text-brand-text font-medium">Filosofía</a>
             <a href="#experience" class="block text-brand-text font-medium">Experiencia</a>
-            <a href="#skills" class="block text-brand-text font-medium">Skills</a>
             <a href="#education" class="block text-brand-text font-medium">Educación</a>
-            <a href="#contact" class="block text-brand-accent font-medium mt-4">Contacto</a>
+            <a href="mailto:bc.cespedes2002@gmail.com" class="block text-brand-accent font-medium mt-4">Contacto</a>
         </div>
     </header>
 
@@ -110,32 +106,41 @@
             </div>
         </section>
 
-        <!-- Métricas Minimalistas -->
-        <section id="metrics" class="py-16 border-y border-brand-border bg-brand-surface">
+        <!-- Sobre Mí Section -->
+        <section id="about" class="py-24 bg-brand-surface border-t border-brand-border">
             <div class="max-w-6xl mx-auto px-6 lg:px-8">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-brand-border">
-                    <div class="px-4 text-center">
-                        <div class="text-4xl font-serif text-brand-text mb-2">95%</div>
-                        <p class="text-xs text-brand-muted uppercase tracking-wider">Detección Proactiva</p>
+                <div class="flex flex-col md:flex-row gap-16 items-start">
+                    <div class="md:w-1/3">
+                        <h2 class="text-3xl font-serif text-brand-text sticky top-32">El manifiesto.</h2>
                     </div>
-                    <div class="px-4 text-center">
-                        <div class="text-4xl font-serif text-brand-text mb-2">-33%</div>
-                        <p class="text-xs text-brand-muted uppercase tracking-wider">Reducción de Costos</p>
-                    </div>
-                    <div class="px-4 text-center">
-                        <div class="text-4xl font-serif text-brand-text mb-2">+4</div>
-                        <p class="text-xs text-brand-muted uppercase tracking-wider">Años de Experiencia</p>
-                    </div>
-                    <div class="px-4 text-center">
-                        <div class="text-4xl font-serif text-brand-text mb-2">+20</div>
-                        <p class="text-xs text-brand-muted uppercase tracking-wider">Certificaciones</p>
+                    
+                    <div class="md:w-2/3 space-y-6 text-brand-text font-light text-lg leading-relaxed">
+                        <p>
+                            Soy Brandon Rambauth, Ingeniero de Sistemas especializado en Observabilidad y Site Reliability Engineering (SRE). A lo largo de mi carrera, he descubierto que el verdadero reto de la tecnología no está en configurar servidores, sino en <strong class="font-medium text-brand-text">cambiar mentalidades</strong>.
+                        </p>
+                        <p>
+                            Mi pasión es transformar entornos de TI que viven apagando incendios (reactivos) en ecosistemas que se anticipan a ellos (predictivos). Para mí, la observabilidad no se trata de tener más dashboards o pantallas brillando, sino de traducir el comportamiento técnico de la infraestructura en respuestas claras para el negocio.
+                        </p>
+                        <p>
+                            Actualmente, estoy cursando una <strong class="font-medium text-brand-text">Maestría en Ingeniería y Analítica de Datos</strong> porque estoy convencido de que el futuro de la confiabilidad no dependerá de cuántos humanos monitorean un sistema, sino de nuestra capacidad para aplicar modelos analíticos avanzados a la telemetría masiva.
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Experiencia Section -->
-        <section id="experience" class="py-24">
+        <!-- Filosofía de Trabajo Section -->
+        <section id="philosophy" class="py-24 border-t border-brand-border">
             <div class="max-w-6xl mx-auto px-6 lg:px-8">
-                <div class="flex flex-col md:flex-row gap-16">
-                    <div class="md:w-1
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <h2 class="text-3xl font-serif text-brand-text mb-4">Filosofía & Enfoque</h2>
+                    <p class="text-brand-muted font-light">Principios fundamentales que guían mi trabajo en ingeniería de confiabilidad.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <!-- Pilar 1 -->
+                    <div class="space-y-4">
+                        <span class="text-brand-accent font-mono text-sm">01 //</span>
+                        <h3 class="text-xl font-medium text-brand-text">Cultura antes que Código</h3>
+                        <p class="text-brand-muted font-light leading-relaxed text-sm">
+                            La transición hacia prácticas SRE siempre genera resistencia. Mi enfoque para
