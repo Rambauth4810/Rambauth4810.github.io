@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brandon Rambauth | SRE & Observabilidad</title>
+    <title>Brandon Rambauth | Especialista en Observabilidad y SRE</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -12,17 +12,19 @@
                 extend: {
                     colors: {
                         brand: {
-                            bg: '#FDFBF7', // Fondo crema muy sutil
-                            text: '#292524', // Gris oscuro cálido
-                            muted: '#78716C', // Gris medio
-                            accent: '#9A3412', // Terracota / Naranja óxido
-                            surface: '#FFFFFF',
-                            border: '#E7E5E4'
+                            bg: '#0B0910', // Morado abismal (casi negro)
+                            surface: '#15111E', // Morado oscuro de superficie
+                            surfaceHover: '#1D172A',
+                            border: '#2C243B', // Borde morado sutil
+                            text: '#F4F2F8', // Blanco lavanda
+                            muted: '#A59EB5', // Gris violáceo para textos secundarios
+                            accent: '#9D4EDD', // Morado vibrante y elegante
+                            accentHover: '#C77DFF'
                         }
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        serif: ['Lora', 'serif'],
+                        serif: ['Playfair Display', 'serif'], // Cambiamos a Playfair para más elegancia
                         mono: ['JetBrains Mono', 'monospace']
                     }
                 }
@@ -33,96 +35,113 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #FDFBF7; }
-        ::-webkit-scrollbar-thumb { background: #D6D3D1; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #9A3412; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #0B0910; }
+        ::-webkit-scrollbar-thumb { background: #2C243B; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #9D4EDD; }
+        
+        /* Efecto de resplandor sutil para el acento */
+        .glow-text {
+            text-shadow: 0 0 20px rgba(157, 78, 221, 0.4);
+        }
     </style>
 </head>
 <body class="bg-brand-bg text-brand-text font-sans antialiased min-h-screen selection:bg-brand-accent selection:text-white">
 
-    <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-bg/95 backdrop-blur-sm border-b border-brand-border transition-all duration-300">
+    <!-- Header Glassmorphism -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-bg/80 backdrop-blur-lg border-b border-brand-border transition-all duration-300">
         <div class="max-w-6xl mx-auto px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <a href="#hero" class="flex items-center space-x-2 group">
-                    <span class="font-serif font-semibold text-brand-text tracking-tight text-lg">Brandon Rambauth.</span>
+                    <span class="font-serif font-medium text-brand-text tracking-wider text-xl group-hover:text-brand-accent transition-colors">BR.</span>
                 </a>
 
-                <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
-                    <a href="#about" class="text-brand-muted hover:text-brand-accent transition-colors">Sobre Mí</a>
-                    <a href="#philosophy" class="text-brand-muted hover:text-brand-accent transition-colors">Filosofía</a>
-                    <a href="#experience" class="text-brand-muted hover:text-brand-accent transition-colors">Experiencia</a>
-                    <a href="#education" class="text-brand-muted hover:text-brand-accent transition-colors">Educación</a>
+                <nav class="hidden md:flex items-center space-x-10 text-sm font-medium tracking-wide">
+                    <a href="#about" class="text-brand-muted hover:text-brand-text transition-colors">Manifiesto</a>
+                    <a href="#philosophy" class="text-brand-muted hover:text-brand-text transition-colors">Filosofía</a>
+                    <a href="#experience" class="text-brand-muted hover:text-brand-text transition-colors">Experiencia</a>
+                    <a href="#education" class="text-brand-muted hover:text-brand-text transition-colors">Educación</a>
                 </nav>
 
                 <div class="hidden sm:flex items-center space-x-4">
-                    <a href="mailto:bc.cespedes2002@gmail.com" class="text-brand-text border-b border-brand-text hover:text-brand-accent hover:border-brand-accent pb-0.5 text-sm font-medium transition-all">
-                        Contacto
+                    <a href="mailto:bc.cespedes2002@gmail.com" class="text-brand-accent border border-brand-accent/30 hover:bg-brand-accent/10 px-5 py-2 rounded-full text-xs font-mono transition-all">
+                        Iniciar Conversación
                     </a>
                 </div>
 
                 <div class="md:hidden flex items-center">
                     <button id="mobile-menu-btn" type="button" class="text-brand-text focus:outline-none p-2">
-                        <i class="fa-solid fa-bars text-lg"></i>
+                        <i class="fa-solid fa-bars-staggered text-lg"></i>
                     </button>
                 </div>
             </div>
         </div>
 
-        <div id="mobile-menu" class="hidden md:hidden bg-brand-surface border-b border-brand-border px-6 pt-4 pb-8 space-y-4 shadow-xl">
-            <a href="#about" class="block text-brand-text font-medium">Sobre Mí</a>
-            <a href="#philosophy" class="block text-brand-text font-medium">Filosofía</a>
-            <a href="#experience" class="block text-brand-text font-medium">Experiencia</a>
-            <a href="#education" class="block text-brand-text font-medium">Educación</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-surface border-b border-brand-border px-6 pt-4 pb-8 space-y-4 shadow-2xl">
+            <a href="#about" class="block text-brand-muted hover:text-brand-text font-medium transition-colors">Manifiesto</a>
+            <a href="#philosophy" class="block text-brand-muted hover:text-brand-text font-medium transition-colors">Filosofía</a>
+            <a href="#experience" class="block text-brand-muted hover:text-brand-text font-medium transition-colors">Experiencia</a>
+            <a href="#education" class="block text-brand-muted hover:text-brand-text font-medium transition-colors">Educación</a>
             <a href="mailto:bc.cespedes2002@gmail.com" class="block text-brand-accent font-medium mt-4">Contacto</a>
         </div>
     </header>
 
-    <main class="pt-28">
+    <main class="pt-20">
         <!-- Hero Section -->
-        <section id="hero" class="py-20 lg:py-32">
-            <div class="max-w-6xl mx-auto px-6 lg:px-8">
-                <div class="max-w-3xl">
-                    <p class="text-brand-accent font-mono text-sm tracking-widest uppercase mb-4">Site Reliability Engineer</p>
-                    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-serif text-brand-text leading-tight mb-6">
-                        Construyendo <span class="italic text-brand-muted">resiliencia</span> y observabilidad predictiva.
+        <section id="hero" class="relative py-24 lg:py-36 overflow-hidden">
+            <!-- Gradiente de fondo radial sutil -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[500px] bg-brand-accent/10 blur-[120px] rounded-full pointer-events-none"></div>
+
+            <div class="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
+                <div class="max-w-4xl mx-auto text-center">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-surface border border-brand-border text-brand-accent text-xs font-mono tracking-widest uppercase mb-8">
+                        <span class="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse"></span>
+                        Especialista en Observabilidad y SRE
+                    </div>
+                    
+                    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-serif text-brand-text leading-tight mb-8">
+                        Construyendo <span class="italic text-brand-muted">resiliencia operativa</span> y observabilidad predictiva.
                     </h1>
-                    <p class="text-brand-muted text-lg sm:text-xl font-light leading-relaxed mb-10 max-w-2xl">
-                        Ingeniero de Sistemas enfocado en transformar ecosistemas complejos en modelos operativos ágiles y orientados al negocio. Liderando la optimización técnica con Dynatrace, Datadog y arquitecturas Cloud.
+                    
+                    <p class="text-brand-muted text-lg font-light leading-relaxed mb-12 max-w-2xl mx-auto">
+                        Ingeniero de Sistemas enfocado en transformar ecosistemas complejos en modelos operativos ágiles y orientados al negocio. Liderando la visibilidad técnica con Dynatrace, Datadog y arquitecturas Cloud.
                     </p>
                     
-                    <div class="flex flex-wrap gap-6 items-center">
-                        <a href="https://www.linkedin.com/in/brandon-rambauth/" target="_blank" rel="noopener noreferrer" class="bg-brand-text hover:bg-brand-accent text-white px-8 py-3.5 rounded-full text-sm font-medium transition-all shadow-sm">
-                            Perfil de LinkedIn
+                    <div class="flex flex-wrap gap-4 items-center justify-center">
+                        <a href="https://www.linkedin.com/in/brandon-rambauth/" target="_blank" rel="noopener noreferrer" class="bg-brand-text hover:bg-brand-muted text-brand-bg px-8 py-3.5 rounded-full text-sm font-medium transition-all">
+                            Conectar en LinkedIn
                         </a>
-                        <a href="mailto:bc.cespedes2002@gmail.com" class="text-brand-text hover:text-brand-accent text-sm font-medium flex items-center gap-2 transition-colors">
-                            <i class="fa-regular fa-envelope"></i> bc.cespedes2002@gmail.com
+                        <a href="mailto:bc.cespedes2002@gmail.com" class="bg-brand-surface border border-brand-border hover:border-brand-accent/50 text-brand-text px-8 py-3.5 rounded-full text-sm font-medium transition-all flex items-center gap-2">
+                            <i class="fa-regular fa-envelope text-brand-accent"></i> Correo Electrónico
                         </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Sobre Mí Section -->
-        <section id="about" class="py-24 bg-brand-surface border-t border-brand-border">
+        <!-- Sobre Mí Section (Manifiesto) -->
+        <section id="about" class="py-24 border-t border-brand-border/50">
             <div class="max-w-6xl mx-auto px-6 lg:px-8">
                 <div class="flex flex-col md:flex-row gap-16 items-start">
                     <div class="md:w-1/3">
-                        <h2 class="text-3xl font-serif text-brand-text sticky top-32">El manifiesto.</h2>
+                        <span class="text-brand-accent font-mono text-xs uppercase tracking-widest block mb-2">01 // Introducción</span>
+                        <h2 class="text-4xl font-serif text-brand-text">El Manifiesto.</h2>
                     </div>
                     
-                    <div class="md:w-2/3 space-y-6 text-brand-text font-light text-lg leading-relaxed">
-                        <p>
-                            Soy Brandon Rambauth, Ingeniero de Sistemas especializado en Observabilidad y Site Reliability Engineering (SRE). A lo largo de mi carrera, he descubierto que el verdadero reto de la tecnología no está en configurar servidores, sino en <strong class="font-medium text-brand-text">cambiar mentalidades</strong>.
+                    <div class="md:w-2/3 space-y-8 text-brand-muted font-light text-lg leading-relaxed">
+                        <p class="text-brand-text text-xl font-medium">
+                            Soy Brandon Rambauth, Ingeniero de Sistemas especialista en Observabilidad y Site Reliability Engineering (SRE).
                         </p>
                         <p>
-                            Mi pasión es transformar entornos de TI que viven apagando incendios (reactivos) en ecosistemas que se anticipan a ellos (predictivos). Para mí, la observabilidad no se trata de tener más dashboards o pantallas brillando, sino de traducir el comportamiento técnico de la infraestructura en respuestas claras para el negocio.
+                            A lo largo de mi carrera, he descubierto que el verdadero reto de la tecnología no está en configurar servidores, sino en <strong class="font-medium text-brand-text">cambiar mentalidades</strong>. Mi pasión es transformar entornos de TI que viven apagando incendios en ecosistemas que se anticipan a ellos.
                         </p>
                         <p>
-                            Actualmente, estoy cursando una <strong class="font-medium text-brand-text">Maestría en Ingeniería y Analítica de Datos</strong> porque estoy convencido de que el futuro de la confiabilidad no dependerá de cuántos humanos monitorean un sistema, sino de nuestra capacidad para aplicar modelos analíticos avanzados a la telemetría masiva.
+                            Para mí, la observabilidad no se trata de tener más dashboards o pantallas brillando, sino de traducir el comportamiento técnico de la infraestructura en respuestas claras para el negocio, asegurando al mismo tiempo la confiabilidad del servicio.
+                        </p>
+                        <p>
+                            Actualmente, curso una <strong class="font-medium text-brand-text">Maestría en Ingeniería y Analítica de Datos</strong> porque estoy convencido de que el futuro del SRE no dependerá de cuántos humanos monitorean un sistema, sino de nuestra capacidad para aplicar modelos analíticos a la telemetría masiva.
                         </p>
                     </div>
                 </div>
@@ -130,47 +149,47 @@
         </section>
 
         <!-- Filosofía de Trabajo Section -->
-        <section id="philosophy" class="py-24 border-t border-brand-border">
+        <section id="philosophy" class="py-24 bg-brand-surface border-y border-brand-border/50">
             <div class="max-w-6xl mx-auto px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-16">
-                    <h2 class="text-3xl font-serif text-brand-text mb-4">Filosofía & Enfoque</h2>
-                    <p class="text-brand-muted font-light">Principios fundamentales que guían mi trabajo en ingeniería de confiabilidad.</p>
+                <div class="mb-16">
+                    <span class="text-brand-accent font-mono text-xs uppercase tracking-widest block mb-2">02 // Enfoque Estratégico</span>
+                    <h2 class="text-4xl font-serif text-brand-text max-w-2xl">Equilibrando la visibilidad profunda con la estabilidad del negocio.</h2>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-border/50">
                     <!-- Pilar 1 -->
-                    <div class="space-y-4">
-                        <span class="text-brand-accent font-mono text-sm">01 //</span>
-                        <h3 class="text-xl font-medium text-brand-text">Cultura antes que Código</h3>
+                    <div class="bg-brand-surface p-10 hover:bg-brand-surfaceHover transition-colors group">
+                        <div class="text-5xl font-serif text-brand-border mb-6 group-hover:text-brand-accent/20 transition-colors">01</div>
+                        <h3 class="text-xl font-medium text-brand-text mb-4">Cultura antes que Código</h3>
                         <p class="text-brand-muted font-light leading-relaxed text-sm">
-                            La transición hacia prácticas SRE siempre genera resistencia. Mi enfoque para evangelizar a los equipos no se basa en imponer herramientas, sino en alinear incentivos. Demuestro el valor de la observabilidad conectando directamente el rendimiento técnico con el impacto transaccional y financiero.
+                            La transición hacia prácticas de observabilidad y SRE siempre genera resistencia. Mi enfoque para evangelizar no impone herramientas, alinea incentivos. Demuestro el valor conectando el rendimiento técnico directamente con el impacto transaccional y financiero.
                         </p>
                     </div>
 
                     <!-- Pilar 2 -->
-                    <div class="space-y-4">
-                        <span class="text-brand-accent font-mono text-sm">02 //</span>
-                        <h3 class="text-xl font-medium text-brand-text">Ejecución Quirúrgica y Eficiencia</h3>
+                    <div class="bg-brand-surface p-10 hover:bg-brand-surfaceHover transition-colors group">
+                        <div class="text-5xl font-serif text-brand-border mb-6 group-hover:text-brand-accent/20 transition-colors">02</div>
+                        <h3 class="text-xl font-medium text-brand-text mb-4">Ejecución y Eficiencia</h3>
                         <p class="text-brand-muted font-light leading-relaxed text-sm">
-                            Liderar proyectos masivos me enseñó que el mayor desafío nunca es la tecnología, es la gestión de la incertidumbre humana. Mi estrategia es la transparencia total, reduciendo la fricción en los equipos mediante automatizaciones tempranas y planificación meticulosa orientada a optimizar recursos y presupuestos.
+                            Liderar proyectos masivos me enseñó que el mayor desafío es la gestión de la incertidumbre humana. Mi estrategia es la transparencia, reduciendo fricción mediante automatizaciones tempranas y planificación orientada a optimizar recursos.
                         </p>
                     </div>
 
                     <!-- Pilar 3 -->
-                    <div class="space-y-4">
-                        <span class="text-brand-accent font-mono text-sm">03 //</span>
-                        <h3 class="text-xl font-medium text-brand-text">Observabilidad Predictiva</h3>
+                    <div class="bg-brand-surface p-10 hover:bg-brand-surfaceHover transition-colors group">
+                        <div class="text-5xl font-serif text-brand-border mb-6 group-hover:text-brand-accent/20 transition-colors">03</div>
+                        <h3 class="text-xl font-medium text-brand-text mb-4">Observabilidad Predictiva</h3>
                         <p class="text-brand-muted font-light leading-relaxed text-sm">
-                            El volumen de logs, métricas y trazas que generamos hoy es inmanejable para el ojo humano. Mi visión es aplicar inteligencia, analítica avanzada y automatización a esa telemetría. El objetivo es simple: que el sistema se auto-diagnostique y alerte antes de que el usuario final siquiera note una degradación.
+                            El volumen de telemetría actual es inmanejable para el ojo humano. Mi visión es aplicar analítica avanzada a esos datos. El objetivo: que el sistema se auto-diagnostique y alerte antes de que el usuario final note una degradación.
                         </p>
                     </div>
 
                     <!-- Pilar 4 -->
-                    <div class="space-y-4">
-                        <span class="text-brand-accent font-mono text-sm">04 //</span>
-                        <h3 class="text-xl font-medium text-brand-text">Claridad en el Caos</h3>
+                    <div class="bg-brand-surface p-10 hover:bg-brand-surfaceHover transition-colors group">
+                        <div class="text-5xl font-serif text-brand-border mb-6 group-hover:text-brand-accent/20 transition-colors">04</div>
+                        <h3 class="text-xl font-medium text-brand-text mb-4">Claridad en el Caos (Resiliencia)</h3>
                         <p class="text-brand-muted font-light leading-relaxed text-sm">
-                            En entornos de alta demanda, un incidente crítico es inevitable. Mi mayor aporte en momentos de alta tensión es estructurar el caos. Dejo de lado la cultura de 'buscar culpables' y me enfoco en el aislamiento del problema mediante datos duros, reduciendo drásticamente el Tiempo Medio de Reparación (MTTR).
+                            En entornos de alta demanda, un incidente crítico es inevitable. Mi mayor aporte en tensión es estructurar el caos. Dejo de lado el 'buscar culpables' y aíslo el problema mediante datos duros, reduciendo drásticamente el MTTR.
                         </p>
                     </div>
                 </div>
@@ -178,63 +197,69 @@
         </section>
 
         <!-- Experiencia Section -->
-        <section id="experience" class="py-24 bg-brand-surface border-t border-brand-border">
+        <section id="experience" class="py-24 border-b border-brand-border/50">
             <div class="max-w-6xl mx-auto px-6 lg:px-8">
                 <div class="flex flex-col md:flex-row gap-16">
                     <div class="md:w-1/3">
-                        <h2 class="text-3xl font-serif text-brand-text sticky top-32">Trayectoria Profesional</h2>
-                        <p class="text-brand-muted mt-4 font-light leading-relaxed">
-                            Un recorrido enfocado en la gestión integral de plataformas de observabilidad y metodologías SRE en entornos enterprise y multi-tenant.
-                        </p>
+                        <span class="text-brand-accent font-mono text-xs uppercase tracking-widest block mb-2">03 // Trayectoria</span>
+                        <h2 class="text-4xl font-serif text-brand-text sticky top-32">Experiencia Profesional.</h2>
                     </div>
                     
-                    <div class="md:w-2/3 space-y-16">
-                        <!-- Job 1 -->
-                        <div class="group">
-                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
-                                <h3 class="text-xl font-medium text-brand-text">Administrador de Plataformas de Observabilidad</h3>
-                                <span class="text-sm font-mono text-brand-accent mt-1 sm:mt-0">Abr 2026 - Presente</span>
+                    <div class="md:w-2/3">
+                        <div class="relative border-l border-brand-border/50 pl-8 space-y-16 py-4">
+                            
+                            <!-- Job 1 -->
+                            <div class="relative group">
+                                <div class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-brand-bg border-2 border-brand-accent group-hover:bg-brand-accent transition-colors"></div>
+                                <div class="mb-2">
+                                    <span class="text-xs font-mono text-brand-accent block mb-1">Abr 2026 - Presente</span>
+                                    <h3 class="text-xl font-medium text-brand-text">Administrador de Plataformas de Observabilidad</h3>
+                                    <p class="text-brand-muted text-sm mt-1">Periferia IT / BNP Paribas Cardif</p>
+                                </div>
+                                <p class="text-brand-muted font-light leading-relaxed text-sm">
+                                    Administro y optimizo el ecosistema global de observabilidad en entornos multi-tenant e internacionales (Dynatrace SaaS/Managed, Datadog, ELK Stack). Lidero la integración con IBM Financial Services Cloud, diseñando flujos de automatización para remediación de eventos y eliminando deuda técnica mediante ingeniería inversa.
+                                </p>
                             </div>
-                            <p class="text-brand-muted text-sm mb-4">Periferia IT / BNP Paribas Cardif</p>
-                            <p class="text-brand-text font-light leading-relaxed mb-4">
-                                Administro y optimizo el ecosistema global de observabilidad en entornos multi-tenant e internacionales (Dynatrace SaaS/Managed, Datadog, ELK Stack). Lidero la integración con IBM Financial Services Cloud, diseñando flujos de automatización para remediación de eventos y eliminando deuda técnica mediante ingeniería inversa.
-                            </p>
-                        </div>
 
-                        <!-- Job 2 -->
-                        <div class="group">
-                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
-                                <h3 class="text-xl font-medium text-brand-text">Analista de Observabilidad</h3>
-                                <span class="text-sm font-mono text-brand-muted mt-1 sm:mt-0">Abr 2025 - Mar 2026</span>
+                            <!-- Job 2 -->
+                            <div class="relative group">
+                                <div class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-brand-bg border-2 border-brand-border group-hover:border-brand-accent transition-colors"></div>
+                                <div class="mb-2">
+                                    <span class="text-xs font-mono text-brand-muted block mb-1">Abr 2025 - Mar 2026</span>
+                                    <h3 class="text-xl font-medium text-brand-text">Analista de Observabilidad</h3>
+                                    <p class="text-brand-muted text-sm mt-1">Puntos Colombia</p>
+                                </div>
+                                <p class="text-brand-muted font-light leading-relaxed text-sm">
+                                    Lideré el cambio hacia un modelo de observabilidad predictiva, logrando detectar el 95% de los incidentes proactivamente. Reduje los costos operativos en un 33% mediante tuning avanzado y ejecuté con éxito la migración total de Splunk a Dynatrace en solo 3 meses.
+                                </p>
                             </div>
-                            <p class="text-brand-muted text-sm mb-4">Puntos Colombia</p>
-                            <p class="text-brand-text font-light leading-relaxed mb-4">
-                                Lideré el cambio hacia un modelo de observabilidad predictiva, logrando detectar el 95% de los incidentes proactivamente. Reduje los costos operativos en un 33% mediante tuning avanzado y ejecuté con éxito la migración total de Splunk a Dynatrace en solo 3 meses.
-                            </p>
-                        </div>
 
-                        <!-- Job 3 -->
-                        <div class="group">
-                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
-                                <h3 class="text-xl font-medium text-brand-text">Monitoring Leader</h3>
-                                <span class="text-sm font-mono text-brand-muted mt-1 sm:mt-0">Oct 2024 - Abr 2025</span>
+                            <!-- Job 3 -->
+                            <div class="relative group">
+                                <div class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-brand-bg border-2 border-brand-border group-hover:border-brand-accent transition-colors"></div>
+                                <div class="mb-2">
+                                    <span class="text-xs font-mono text-brand-muted block mb-1">Oct 2024 - Abr 2025</span>
+                                    <h3 class="text-xl font-medium text-brand-text">Monitoring Leader</h3>
+                                    <p class="text-brand-muted text-sm mt-1">Servinform</p>
+                                </div>
+                                <p class="text-brand-muted font-light leading-relaxed text-sm">
+                                    Dirigí equipos técnicos estandarizando la entrega de indicadores críticos. Coordiné la remediación de incidentes mediante scripting en plataformas como EasyVista y SolarWinds, facilitando la adopción de prácticas SRE a equipos de desarrollo.
+                                </p>
                             </div>
-                            <p class="text-brand-muted text-sm mb-4">Servinform</p>
-                            <p class="text-brand-text font-light leading-relaxed mb-4">
-                                Dirigí equipos técnicos estandarizando la entrega de indicadores críticos. Coordiné la remediación de incidentes mediante scripting en plataformas como EasyVista y SolarWinds, facilitando la adopción de prácticas SRE a equipos de desarrollo.
-                            </p>
-                        </div>
 
-                        <!-- Job 4 -->
-                        <div class="group">
-                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
-                                <h3 class="text-xl font-medium text-brand-text">Project Engineer II</h3>
-                                <span class="text-sm font-mono text-brand-muted mt-1 sm:mt-0">Jun 2022 - Ago 2024</span>
+                            <!-- Job 4 -->
+                            <div class="relative group">
+                                <div class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-brand-bg border-2 border-brand-border group-hover:border-brand-accent transition-colors"></div>
+                                <div class="mb-2">
+                                    <span class="text-xs font-mono text-brand-muted block mb-1">Jun 2022 - Ago 2024</span>
+                                    <h3 class="text-xl font-medium text-brand-text">Project Engineer II</h3>
+                                    <p class="text-brand-muted text-sm mt-1">E-dea Networks</p>
+                                </div>
+                                <p class="text-brand-muted font-light leading-relaxed text-sm">
+                                    Lideré proyectos de arquitectura crítica de observabilidad para clientes enterprise. Ejecuté tuning sobre bases de datos SQL y redes para maximizar el rendimiento de SolarWinds, integrando ecosistemas en entornos multi-cloud (AWS, Azure, GCP).
+                                </p>
                             </div>
-                            <p class="text-brand-muted text-sm mb-4">E-dea Networks</p>
-                            <p class="text-brand-text font-light leading-relaxed mb-4">
-                                Lideré proyectos de arquitectura crítica de observabilidad para clientes enterprise. Ejecuté tuning sobre bases de datos SQL y redes para maximizar el rendimiento de SolarWinds, integrando ecosistemas en entornos multi-cloud (AWS, Azure, GCP).
-                            </p>
+
                         </div>
                     </div>
                 </div>
@@ -242,46 +267,47 @@
         </section>
 
         <!-- Habilidades & Herramientas -->
-        <section class="py-24 border-t border-brand-border">
+        <section class="py-24 bg-brand-surface border-b border-brand-border/50">
             <div class="max-w-6xl mx-auto px-6 lg:px-8">
-                <h2 class="text-3xl font-serif text-brand-text mb-12 text-center">Stack & Herramientas</h2>
+                <span class="text-brand-accent font-mono text-xs uppercase tracking-widest block mb-2 text-center">04 // Herramientas</span>
+                <h2 class="text-4xl font-serif text-brand-text mb-16 text-center">Stack Tecnológico.</h2>
                 
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center sm:text-left">
-                    <div>
-                        <h4 class="text-sm font-semibold text-brand-text uppercase tracking-wider mb-4 border-b border-brand-border pb-2">Observabilidad</h4>
-                        <ul class="space-y-3 font-light text-brand-muted text-sm">
-                            <li>Dynatrace</li>
-                            <li>Datadog</li>
-                            <li>SolarWinds</li>
-                            <li>Splunk & ELK Stack</li>
-                            <li>Observe</li>
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+                    <div class="border-t border-brand-border pt-4">
+                        <h4 class="text-sm font-medium text-brand-text mb-4">Observabilidad</h4>
+                        <ul class="space-y-2.5 font-light text-brand-muted text-sm">
+                            <li class="hover:text-brand-accent transition-colors">Dynatrace</li>
+                            <li class="hover:text-brand-accent transition-colors">Datadog</li>
+                            <li class="hover:text-brand-accent transition-colors">SolarWinds</li>
+                            <li class="hover:text-brand-accent transition-colors">Splunk & ELK Stack</li>
+                            <li class="hover:text-brand-accent transition-colors">Observe</li>
                         </ul>
                     </div>
-                    <div>
-                        <h4 class="text-sm font-semibold text-brand-text uppercase tracking-wider mb-4 border-b border-brand-border pb-2">Cloud</h4>
-                        <ul class="space-y-3 font-light text-brand-muted text-sm">
-                            <li>AWS</li>
-                            <li>Azure</li>
-                            <li>GCP</li>
-                            <li>IBM Financial Cloud</li>
+                    <div class="border-t border-brand-border pt-4">
+                        <h4 class="text-sm font-medium text-brand-text mb-4">Cloud</h4>
+                        <ul class="space-y-2.5 font-light text-brand-muted text-sm">
+                            <li class="hover:text-brand-accent transition-colors">AWS</li>
+                            <li class="hover:text-brand-accent transition-colors">Azure</li>
+                            <li class="hover:text-brand-accent transition-colors">GCP</li>
+                            <li class="hover:text-brand-accent transition-colors">IBM Financial Cloud</li>
                         </ul>
                     </div>
-                    <div>
-                        <h4 class="text-sm font-semibold text-brand-text uppercase tracking-wider mb-4 border-b border-brand-border pb-2">Desarrollo & Datos</h4>
-                        <ul class="space-y-3 font-light text-brand-muted text-sm">
-                            <li>Python & Scripting</li>
-                            <li>Bash</li>
-                            <li>SQL & NoSQL</li>
-                            <li>Analítica de Datos</li>
+                    <div class="border-t border-brand-border pt-4">
+                        <h4 class="text-sm font-medium text-brand-text mb-4">Desarrollo & Datos</h4>
+                        <ul class="space-y-2.5 font-light text-brand-muted text-sm">
+                            <li class="hover:text-brand-accent transition-colors">Python & Scripting</li>
+                            <li class="hover:text-brand-accent transition-colors">Bash</li>
+                            <li class="hover:text-brand-accent transition-colors">SQL & NoSQL</li>
+                            <li class="hover:text-brand-accent transition-colors">Analítica de Datos</li>
                         </ul>
                     </div>
-                    <div>
-                        <h4 class="text-sm font-semibold text-brand-text uppercase tracking-wider mb-4 border-b border-brand-border pb-2">Metodología</h4>
-                        <ul class="space-y-3 font-light text-brand-muted text-sm">
-                            <li>SRE Practices</li>
-                            <li>Gestión MTTR/SLAs</li>
-                            <li>Scrum / Lean</li>
-                            <li>Design Thinking</li>
+                    <div class="border-t border-brand-border pt-4">
+                        <h4 class="text-sm font-medium text-brand-text mb-4">Metodología SRE</h4>
+                        <ul class="space-y-2.5 font-light text-brand-muted text-sm">
+                            <li class="hover:text-brand-accent transition-colors">Prácticas de Confiabilidad</li>
+                            <li class="hover:text-brand-accent transition-colors">Gestión MTTR/SLAs</li>
+                            <li class="hover:text-brand-accent transition-colors">Scrum / Lean</li>
+                            <li class="hover:text-brand-accent transition-colors">Automatización</li>
                         </ul>
                     </div>
                 </div>
@@ -289,77 +315,64 @@
         </section>
 
         <!-- Educación y Certificaciones -->
-        <section id="education" class="py-24 bg-brand-surface border-y border-brand-border">
+        <section id="education" class="py-24">
             <div class="max-w-6xl mx-auto px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-16">
-                    <h2 class="text-3xl font-serif text-brand-text">Formación & Avales Técnicos</h2>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                <div class="flex flex-col md:flex-row gap-16">
                     <!-- Educación -->
-                    <div class="space-y-6">
-                        <h3 class="text-xl font-medium text-brand-text mb-6">Educación Académica</h3>
-                        
-                        <div class="border-l-2 border-brand-border pl-6 relative">
-                            <div class="absolute w-2 h-2 bg-brand-accent rounded-full -left-[5px] top-2"></div>
-                            <span class="text-brand-accent font-mono text-xs">2025 - Presente</span>
-                            <h4 class="text-base font-medium text-brand-text mt-1">Maestría en Ingeniería y Analítica de Datos</h4>
-                            <p class="text-brand-muted font-light text-sm mt-1">Universidad Jorge Tadeo Lozano</p>
+                    <div class="md:w-1/2 space-y-8">
+                        <div>
+                            <span class="text-brand-accent font-mono text-xs uppercase tracking-widest block mb-2">05 // Formación</span>
+                            <h2 class="text-3xl font-serif text-brand-text">Educación Académica.</h2>
                         </div>
                         
-                        <div class="border-l-2 border-brand-border pl-6 relative">
-                            <div class="absolute w-2 h-2 bg-brand-muted rounded-full -left-[5px] top-2"></div>
-                            <span class="text-brand-muted font-mono text-xs">2019 - 2023</span>
-                            <h4 class="text-base font-medium text-brand-text mt-1">Ingeniería de Sistemas</h4>
-                            <p class="text-brand-muted font-light text-sm mt-1">Universidad Jorge Tadeo Lozano</p>
-                        </div>
+                        <div class="space-y-6">
+                            <div class="bg-brand-surface border border-brand-border/50 p-6 rounded-sm">
+                                <span class="text-brand-accent font-mono text-xs">2025 - Presente</span>
+                                <h4 class="text-lg font-medium text-brand-text mt-2">Maestría en Ingeniería y Analítica de Datos</h4>
+                                <p class="text-brand-muted font-light text-sm mt-1">Universidad Jorge Tadeo Lozano</p>
+                            </div>
+                            
+                            <div class="bg-brand-surface border border-brand-border/50 p-6 rounded-sm">
+                                <span class="text-brand-muted font-mono text-xs">2019 - 2023</span>
+                                <h4 class="text-lg font-medium text-brand-text mt-2">Ingeniería de Sistemas</h4>
+                                <p class="text-brand-muted font-light text-sm mt-1">Universidad Jorge Tadeo Lozano</p>
+                            </div>
 
-                        <div class="border-l-2 border-brand-border pl-6 relative">
-                            <div class="absolute w-2 h-2 bg-brand-muted rounded-full -left-[5px] top-2"></div>
-                            <span class="text-brand-muted font-mono text-xs">2024</span>
-                            <h4 class="text-base font-medium text-brand-text mt-1">Diplomado en Gestión de Proyectos</h4>
-                            <p class="text-brand-muted font-light text-sm mt-1">Politécnico de Colombia</p>
+                            <div class="bg-brand-surface border border-brand-border/50 p-6 rounded-sm">
+                                <span class="text-brand-muted font-mono text-xs">2024</span>
+                                <h4 class="text-lg font-medium text-brand-text mt-2">Diplomado en Gestión de Proyectos</h4>
+                                <p class="text-brand-muted font-light text-sm mt-1">Politécnico de Colombia</p>
+                            </div>
                         </div>
                     </div>
                     
                     <!-- Certificaciones -->
-                    <div>
-                        <h3 class="text-xl font-medium text-brand-text mb-6">Certificaciones Destacadas (+20)</h3>
+                    <div class="md:w-1/2 space-y-8">
+                        <div>
+                            <span class="text-brand-accent font-mono text-xs uppercase tracking-widest block mb-2">06 // Avales</span>
+                            <h2 class="text-3xl font-serif text-brand-text">Certificaciones (+20).</h2>
+                        </div>
+                        
                         <ul class="space-y-4 font-light text-brand-text text-sm">
-                            <li class="flex items-center gap-3 border-b border-brand-border pb-3">
-                                <i class="fa-solid fa-certificate text-brand-muted"></i>
-                                <div>
-                                    <span class="block font-medium">Dynatrace Essentials</span>
-                                    <span class="text-brand-muted text-xs">Dynatrace</span>
-                                </div>
+                            <li class="flex items-center justify-between border-b border-brand-border/50 pb-3 group">
+                                <span class="font-medium group-hover:text-brand-accent transition-colors">Dynatrace Essentials</span>
+                                <span class="text-brand-muted font-mono text-xs">Dynatrace</span>
                             </li>
-                            <li class="flex items-center gap-3 border-b border-brand-border pb-3">
-                                <i class="fa-solid fa-certificate text-brand-muted"></i>
-                                <div>
-                                    <span class="block font-medium">Network Performance Monitor</span>
-                                    <span class="text-brand-muted text-xs">SolarWinds</span>
-                                </div>
+                            <li class="flex items-center justify-between border-b border-brand-border/50 pb-3 group">
+                                <span class="font-medium group-hover:text-brand-accent transition-colors">Network Performance Monitor</span>
+                                <span class="text-brand-muted font-mono text-xs">SolarWinds</span>
                             </li>
-                            <li class="flex items-center gap-3 border-b border-brand-border pb-3">
-                                <i class="fa-solid fa-certificate text-brand-muted"></i>
-                                <div>
-                                    <span class="block font-medium">DPN Sales Specialist</span>
-                                    <span class="text-brand-muted text-xs">Datadog</span>
-                                </div>
+                            <li class="flex items-center justify-between border-b border-brand-border/50 pb-3 group">
+                                <span class="font-medium group-hover:text-brand-accent transition-colors">DPN Sales Specialist</span>
+                                <span class="text-brand-muted font-mono text-xs">Datadog</span>
                             </li>
-                            <li class="flex items-center gap-3 border-b border-brand-border pb-3">
-                                <i class="fa-solid fa-certificate text-brand-muted"></i>
-                                <div>
-                                    <span class="block font-medium">MongoDB SI Associate</span>
-                                    <span class="text-brand-muted text-xs">MongoDB</span>
-                                </div>
+                            <li class="flex items-center justify-between border-b border-brand-border/50 pb-3 group">
+                                <span class="font-medium group-hover:text-brand-accent transition-colors">MongoDB SI Associate</span>
+                                <span class="text-brand-muted font-mono text-xs">MongoDB</span>
                             </li>
-                            <li class="flex items-center gap-3">
-                                <i class="fa-solid fa-certificate text-brand-muted"></i>
-                                <div>
-                                    <span class="block font-medium">Data Analytics</span>
-                                    <span class="text-brand-muted text-xs">MinTIC</span>
-                                </div>
+                            <li class="flex items-center justify-between border-b border-brand-border/50 pb-3 group">
+                                <span class="font-medium group-hover:text-brand-accent transition-colors">Data Analytics</span>
+                                <span class="text-brand-muted font-mono text-xs">MinTIC</span>
                             </li>
                         </ul>
                     </div>
@@ -370,15 +383,15 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-brand-text text-white py-12">
+    <footer class="border-t border-brand-border bg-brand-surface py-12">
         <div class="max-w-6xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="text-center md:text-left">
-                <span class="font-serif font-semibold text-lg">Brandon Rambauth.</span>
-                <p class="text-stone-400 text-sm mt-1">Ingeniero de Sistemas | Bogotá, Colombia</p>
+                <span class="font-serif font-medium text-lg text-brand-text tracking-wide">BR.</span>
+                <p class="text-brand-muted text-sm mt-1">Especialista en Observabilidad y SRE | Bogotá, Colombia</p>
             </div>
-            <div class="flex items-center gap-6 text-sm font-medium">
-                <a href="https://www.linkedin.com/in/brandon-rambauth/" class="text-stone-400 hover:text-white transition-colors" target="_blank">LinkedIn</a>
-                <a href="mailto:bc.cespedes2002@gmail.com" class="text-stone-400 hover:text-white transition-colors">Enviar Correo</a>
+            <div class="flex items-center gap-8 text-sm font-medium">
+                <a href="https://www.linkedin.com/in/brandon-rambauth/" class="text-brand-muted hover:text-brand-accent transition-colors" target="_blank">LinkedIn</a>
+                <a href="mailto:bc.cespedes2002@gmail.com" class="text-brand-muted hover:text-brand-accent transition-colors">Contactar</a>
             </div>
         </div>
     </footer>
